@@ -480,17 +480,14 @@ button:focus {
 }
 
 
-
-
-
 /* ensure button group stays centered */
-  .buttons.is-centered { justify-content: center; }
+.buttons.is-centered { justify-content: center; }
 
-  /* make buttons a bit tighter and visually balanced */
-  .buttons .button { margin: 0 0.4rem; }
+/* make buttons a bit tighter and visually balanced */
+.buttons .button { margin: 0 0.4rem; }
 
-  /* smooth scroll for in-page anchors */
-  html { scroll-behavior: smooth; }
+/* smooth scroll for in-page anchors */
+html { scroll-behavior: smooth; }
 
-  /* prevent anchor overlap if you have fixed navbar (adjust height if needed) */
-  html { scroll-padding-top: 72px; }
+/* prevent anchor overlap if you have fixed navbar (adjust height if needed) */
+html { scroll-padding-top: 72px; }
