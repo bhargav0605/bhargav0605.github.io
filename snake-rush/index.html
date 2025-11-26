@@ -59,6 +59,104 @@
 
         <div class="content" style="margin-top: 2em;">
           <h2 class="is-size-5 has-text-weight-bold">
+            <span>System Architecture Diagram</span>
+          </h2>
+          <pre style="background-color: #f5f5f5; padding: 1.5em; border-radius: 6px; overflow-x: auto; font-size: 0.85em; line-height: 1.4;">
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                              CI/CD Pipeline & GitOps                                 │
+├─────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                      │
+│  ┌──────────┐    ┌──────────────┐    ┌─────────────┐    ┌──────────────────────┐  │
+│  │  GitHub  │───▶│ Docker Build │───▶│   Harbor    │───▶│   ArgoCD (GitOps)    │  │
+│  │   Repo   │    │ Multi-stage  │    │  Registry   │    │   Automated Sync     │  │
+│  └──────────┘    └──────────────┘    └─────────────┘    └──────────┬───────────┘  │
+│                                                                      │               │
+└──────────────────────────────────────────────────────────────────────┼───────────────┘
+                                                                       │
+                                                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                          Civo Cloud - Kubernetes Cluster (K3s)                       │
+├─────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                      │
+│  ┌────────────────────────────────────────────────────────────────────────────┐    │
+│  │                      Traefik Ingress Controller                             │    │
+│  │                    (SSL/TLS Termination & Routing)                          │    │
+│  └────────────┬───────────────────────────────────────┬────────────────────────┘    │
+│               │                                       │                              │
+│  ┌────────────▼──────────────┐         ┌─────────────▼──────────────┐              │
+│  │   Frontend Namespace      │         │    Backend Namespace       │              │
+│  ├───────────────────────────┤         ├────────────────────────────┤              │
+│  │                           │         │                            │              │
+│  │  ┌─────────────────────┐ │         │  ┌──────────────────────┐ │              │
+│  │  │  React + Vite       │ │         │  │   Go WebSocket       │ │              │
+│  │  │  (TypeScript)       │ │         │  │   Server (x2)        │ │              │
+│  │  │  NGINX Server       │ │         │  │   + Gorilla Mux      │ │              │
+│  │  │  Replicas: 2        │ │         │  │   Replicas: 2        │ │              │
+│  │  └─────────────────────┘ │         │  └──────────┬───────────┘ │              │
+│  │                           │         │             │              │              │
+│  │  Service: ClusterIP       │         │  Service: ClusterIP       │              │
+│  └───────────┬───────────────┘         └─────────────┼──────────────┘              │
+│              │                                       │                              │
+│              │  WebSocket                            │                              │
+│              └───────────────────────────────────────┤                              │
+│                                                      │                              │
+│                                         ┌────────────▼──────────────┐              │
+│                                         │   Redis Namespace         │              │
+│                                         ├───────────────────────────┤              │
+│                                         │                           │              │
+│                                         │  ┌──────────────────────┐│              │
+│                                         │  │  Redis Master        ││              │
+│                                         │  │  (State Store)       ││              │
+│                                         │  └──────────┬───────────┘│              │
+│                                         │             │             │              │
+│                                         │  ┌──────────▼───────────┐│              │
+│                                         │  │  Redis Replica       ││              │
+│                                         │  │  (HA Replication)    ││              │
+│                                         │  └──────────────────────┘│              │
+│                                         │                           │              │
+│                                         │  Persistent Volume (PV)   │              │
+│                                         │  Civo Block Storage       │              │
+│                                         └───────────────────────────┘              │
+│                                                                                      │
+│  ┌────────────────────────────────────────────────────────────────────────────┐    │
+│  │                          ArgoCD Namespace                                   │    │
+│  │  ┌──────────────────────────────────────────────────────────────────────┐  │    │
+│  │  │  ArgoCD Server - Continuous Deployment & Health Monitoring           │  │    │
+│  │  │  Auto-sync from Git | Rolling Updates | Health Checks                │  │    │
+│  │  └──────────────────────────────────────────────────────────────────────┘  │    │
+│  └────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                      │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                              Data Flow & Communication                               │
+├─────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                      │
+│  Players ──HTTPS──▶ Traefik Ingress ──▶ Frontend (React)                           │
+│                                                │                                     │
+│                                                ▼                                     │
+│  Players ──WSS────▶ Traefik Ingress ──▶ Backend (Go) ◀──▶ Redis (State)            │
+│                                                │                                     │
+│                                                ▼                                     │
+│                                         Redis Pub/Sub                                │
+│                                       (Multi-pod Sync)                               │
+│                                                                                      │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+
+Key Technologies:
+  • Kubernetes (K3s on Civo Cloud) - Container orchestration
+  • ArgoCD - GitOps continuous delivery
+  • Traefik - Ingress controller with SSL/TLS
+  • Go + Gorilla WebSocket - Real-time backend
+  • React + TypeScript + Vite - Frontend UI
+  • Redis - Distributed state management
+  • Docker + Harbor - Container registry
+  • NGINX - Static file serving
+          </pre>
+        </div>
+
+        <div class="content" style="margin-top: 2em;">
+          <h2 class="is-size-5 has-text-weight-bold">
             <span>Infrastructure Architecture</span>
           </h2>
 
