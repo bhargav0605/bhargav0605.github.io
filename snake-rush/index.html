@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snake Rush - Bhargav Parmar</title>
-  <meta name="description" content="Snake Rush - A modern implementation of the classic Snake game built with JavaScript and HTML5 Canvas">
+  <meta name="description" content="Snake Rush - A cloud-native multiplayer snake game with production-grade Kubernetes infrastructure">
 
   <!-- Bulma CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
@@ -42,7 +42,7 @@
           Snake Rush
         </h1>
         <h3 class="title is-size-4 is-size-5-mobile has-text-primary is-family-secondary">
-          A Modern Classic Game Experience
+          Production-Grade Multiplayer Game Infrastructure
         </h3>
 
         <div class="content" style="margin-top: 2em;">
@@ -50,27 +50,218 @@
             <span>Overview</span>
           </h2>
           <p style="text-align: justify;">
-            Snake Rush is a modern web-based implementation of the timeless Snake game. Built with vanilla JavaScript
-            and HTML5 Canvas, this project demonstrates clean code architecture and smooth gameplay mechanics.
-            The game features responsive controls, dynamic scoring system, and progressive difficulty levels that
-            challenge players to beat their high scores.
+            Snake Rush is a real-time multiplayer snake game built with modern cloud-native technologies and deployed on production Kubernetes infrastructure. This project demonstrates end-to-end DevOps practices, from containerization and CI/CD pipelines to GitOps deployment and observability.
           </p>
           <p style="text-align: justify;">
-            This project showcases fundamental game development concepts including collision detection, game loop
-            implementation, canvas rendering, and state management. The minimalist design focuses on delivering
-            a pure gaming experience while maintaining code quality and performance optimization.
+            The platform leverages a microservices architecture with a Go backend handling WebSocket connections for real-time gameplay, Redis for distributed state management across multiple pods, and a React frontend for the user interface. The entire infrastructure is deployed on <a href="https://www.civo.com/" target="_blank" rel="noopener noreferrer">Civo Cloud</a>, a Kubernetes-native cloud provider, showcasing scalable and resilient system design.
           </p>
         </div>
 
         <div class="content" style="margin-top: 2em;">
           <h2 class="is-size-5 has-text-weight-bold">
-            <span>Technologies Used</span>
+            <span>Infrastructure Architecture</span>
+          </h2>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Cloud Platform
+          </h3>
+          <p style="text-align: justify;">
+            The application is hosted on <a href="https://www.civo.com/" target="_blank" rel="noopener noreferrer">Civo Cloud</a>, a cloud-native Kubernetes platform that provides fast cluster provisioning and excellent performance. Civo's K3s-based infrastructure offers production-ready Kubernetes clusters with integrated networking, storage, and load balancing capabilities. The platform's simplicity and developer-friendly approach make it ideal for deploying containerized applications at scale.
+          </p>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Kubernetes Architecture
+          </h3>
+          <p style="text-align: justify;">
+            The application follows a multi-namespace architecture for logical separation and resource isolation:
+          </p>
+          <ul>
+            <li><strong>Frontend Namespace</strong> - Hosts the React application served through NGINX with 2 replicas for high availability</li>
+            <li><strong>Backend Namespace</strong> - Runs the Go WebSocket server with 2 replicas behind a service for load distribution</li>
+            <li><strong>Redis Namespace</strong> - Contains Redis master-replica setup for distributed state management</li>
+            <li><strong>ArgoCD Namespace</strong> - GitOps controller managing continuous deployment</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Network Architecture
+          </h3>
+          <ul>
+            <li><strong>Traefik Ingress Controller</strong> - Routes external traffic with SSL/TLS termination</li>
+            <li><strong>Service Mesh</strong> - Internal communication between microservices using ClusterIP services</li>
+            <li><strong>WebSocket Support</strong> - Configured ingress rules for persistent WebSocket connections</li>
+            <li><strong>CORS Configuration</strong> - Environment-based origin validation for security</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Storage & State Management
+          </h3>
+          <ul>
+            <li><strong>Redis Cluster</strong> - Master-replica configuration for room state, player connections, and game scores</li>
+            <li><strong>Persistent Volumes</strong> - Civo block storage for Redis data persistence and application logs</li>
+            <li><strong>ConfigMaps</strong> - Environment-specific configuration management</li>
+            <li><strong>Secrets</strong> - Secure storage for Redis credentials and sensitive data</li>
+          </ul>
+        </div>
+
+        <div class="content" style="margin-top: 2em;">
+          <h2 class="is-size-5 has-text-weight-bold">
+            <span>CI/CD Pipeline</span>
+          </h2>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Continuous Integration
+          </h3>
+          <ul>
+            <li><strong>Docker Multi-stage Builds</strong> - Optimized image builds with build cache and minimal production layers</li>
+            <li><strong>Harbor Registry</strong> - Private container registry for secure image storage and vulnerability scanning</li>
+            <li><strong>Image Tagging Strategy</strong> - Semantic versioning with automated latest tag updates</li>
+            <li><strong>Platform Targeting</strong> - Cross-platform builds for linux/amd64 architecture</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            GitOps with ArgoCD
+          </h3>
+          <p style="text-align: justify;">
+            ArgoCD provides declarative GitOps continuous delivery for Kubernetes. The deployment workflow follows:
+          </p>
+          <ul>
+            <li><strong>Git as Single Source of Truth</strong> - All Kubernetes manifests stored in version control</li>
+            <li><strong>Automated Sync</strong> - ArgoCD monitors Git repository and automatically applies changes</li>
+            <li><strong>Rolling Updates</strong> - Zero-downtime deployments with pod replacement strategy</li>
+            <li><strong>Health Monitoring</strong> - Continuous health checks and automatic rollback on failures</li>
+            <li><strong>Multi-environment Support</strong> - Separate ArgoCD applications for dev and production</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Deployment Process
+          </h3>
+          <ol>
+            <li>Code changes pushed to GitHub repository</li>
+            <li>Docker images built with version tags (e.g., v1.4.0-json-logs)</li>
+            <li>Images pushed to Harbor private registry</li>
+            <li>Kubernetes deployment manifests updated with new image tags</li>
+            <li>ArgoCD detects manifest changes and triggers sync</li>
+            <li>Rolling update deployed across pods with health checks</li>
+            <li>Traffic gradually shifted to new pods while old pods drain</li>
+          </ol>
+        </div>
+
+        <div class="content" style="margin-top: 2em;">
+          <h2 class="is-size-5 has-text-weight-bold">
+            <span>Technology Stack</span>
+          </h2>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Backend
+          </h3>
+          <ul>
+            <li><strong>Go (Golang)</strong> - High-performance WebSocket server with goroutine-based concurrency</li>
+            <li><strong>Gorilla WebSocket</strong> - Production-ready WebSocket implementation</li>
+            <li><strong>Gorilla Mux</strong> - HTTP router and URL matcher</li>
+            <li><strong>Redis Client</strong> - Go Redis library for distributed state</li>
+            <li><strong>Logrus</strong> - Structured JSON logging for observability</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Frontend
+          </h3>
+          <ul>
+            <li><strong>React 18</strong> - Modern UI framework with hooks</li>
+            <li><strong>TypeScript</strong> - Type-safe development</li>
+            <li><strong>Vite</strong> - Fast build tool and dev server</li>
+            <li><strong>React Router</strong> - Client-side routing</li>
+            <li><strong>WebSocket API</strong> - Real-time bidirectional communication</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Infrastructure
+          </h3>
+          <ul>
+            <li><strong>Kubernetes (K3s)</strong> - Container orchestration on Civo Cloud</li>
+            <li><strong>ArgoCD</strong> - GitOps continuous delivery</li>
+            <li><strong>Docker</strong> - Containerization with multi-stage builds</li>
+            <li><strong>Harbor</strong> - Private container registry</li>
+            <li><strong>Traefik</strong> - Ingress controller and reverse proxy</li>
+            <li><strong>Redis</strong> - In-memory data store for distributed state</li>
+            <li><strong>NGINX</strong> - Static file serving for frontend</li>
+          </ul>
+        </div>
+
+        <div class="content" style="margin-top: 2em;">
+          <h2 class="is-size-5 has-text-weight-bold">
+            <span>Distributed Systems Design</span>
+          </h2>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Scalability Patterns
+          </h3>
+          <ul>
+            <li><strong>Horizontal Pod Autoscaling</strong> - Ready for automatic scaling based on CPU/memory metrics</li>
+            <li><strong>Redis Pub/Sub</strong> - Broadcast messages across all backend pods for real-time sync</li>
+            <li><strong>Stateless Backend</strong> - All game state stored in Redis for pod interchangeability</li>
+            <li><strong>Connection Pooling</strong> - Efficient Redis connection management across pods</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            High Availability
+          </h3>
+          <ul>
+            <li><strong>Multi-replica Deployments</strong> - 2 replicas for both frontend and backend</li>
+            <li><strong>Redis Replication</strong> - Master-replica setup for data redundancy</li>
+            <li><strong>Health Checks</strong> - Liveness and readiness probes for automatic recovery</li>
+            <li><strong>Rolling Updates</strong> - Zero-downtime deployments with gradual traffic shift</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Distributed State Challenges Solved
+          </h3>
+          <ul>
+            <li><strong>Room Capacity Enforcement</strong> - Redis-based global player count prevents race conditions across pods</li>
+            <li><strong>Player Connection Tracking</strong> - Unique connection IDs with Redis hash maps for distributed tracking</li>
+            <li><strong>Game State Synchronization</strong> - Redis as single source of truth for player positions and scores</li>
+            <li><strong>WebSocket Stickiness</strong> - Ingress configuration maintains WebSocket session affinity</li>
+          </ul>
+        </div>
+
+        <div class="content" style="margin-top: 2em;">
+          <h2 class="is-size-5 has-text-weight-bold">
+            <span>Observability & Monitoring</span>
+          </h2>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Structured Logging
+          </h3>
+          <ul>
+            <li><strong>JSON Log Format</strong> - Structured logs optimized for log aggregation platforms</li>
+            <li><strong>Standardized Fields</strong> - Service name, version, environment, and timestamp on every log</li>
+            <li><strong>Event Taxonomy</strong> - Consistent event naming (room.player.joined, websocket.connection.established)</li>
+            <li><strong>Contextual Logging</strong> - Room ID, player ID, connection ID for distributed tracing</li>
+            <li><strong>SigNoz Integration</strong> - Ready for SigNoz dashboard creation with indexed attributes</li>
+          </ul>
+
+          <h3 class="is-size-6 has-text-weight-semibold" style="margin-top: 1.5em;">
+            Metrics & Traces
+          </h3>
+          <ul>
+            <li><strong>Request Logging Middleware</strong> - HTTP request/response tracking with duration and status codes</li>
+            <li><strong>Visitor Analytics</strong> - Client IP, user agent, and referer tracking</li>
+            <li><strong>Performance Metrics</strong> - Request duration, bytes transferred, error rates</li>
+            <li><strong>Log Rotation</strong> - Lumberjack library for automatic log file management</li>
+          </ul>
+        </div>
+
+        <div class="content" style="margin-top: 2em;">
+          <h2 class="is-size-5 has-text-weight-bold">
+            <span>Security Implementation</span>
           </h2>
           <ul>
-            <li><strong>JavaScript (ES6+)</strong> - Core game logic and mechanics</li>
-            <li><strong>HTML5 Canvas</strong> - Graphics rendering and animation</li>
-            <li><strong>CSS3</strong> - Styling and responsive design</li>
-            <li><strong>Local Storage API</strong> - High score persistence</li>
+            <li><strong>CORS Protection</strong> - Environment-based origin whitelisting</li>
+            <li><strong>Non-root Containers</strong> - All containers run as unprivileged user (uid 1000)</li>
+            <li><strong>Secret Management</strong> - Kubernetes secrets for sensitive credentials</li>
+            <li><strong>Network Policies</strong> - Namespace isolation with controlled ingress/egress</li>
+            <li><strong>TLS Encryption</strong> - End-to-end encryption with SSL/TLS termination at ingress</li>
+            <li><strong>Private Registry</strong> - Harbor with role-based access control</li>
+            <li><strong>Resource Limits</strong> - CPU and memory limits to prevent resource exhaustion</li>
           </ul>
         </div>
 
@@ -79,27 +270,30 @@
             <span>Key Features</span>
           </h2>
           <ul>
-            <li>Smooth 60 FPS gameplay with optimized rendering</li>
-            <li>Progressive difficulty system that increases as you score</li>
-            <li>Responsive keyboard controls (Arrow keys / WASD)</li>
-            <li>Real-time score tracking and high score persistence</li>
-            <li>Clean, minimal UI focusing on gameplay</li>
-            <li>Collision detection with walls and self-intersection</li>
-            <li>Pause/Resume functionality</li>
-            <li>Mobile-responsive design</li>
+            <li>Real-time multiplayer gameplay with WebSocket connections</li>
+            <li>Room-based matchmaking with 2-player limit enforcement</li>
+            <li>Distributed state management across multiple backend pods</li>
+            <li>Zero-downtime deployments with rolling updates</li>
+            <li>GitOps-driven continuous delivery with ArgoCD</li>
+            <li>Production-grade structured logging for observability</li>
+            <li>High availability with multi-replica architecture</li>
+            <li>Cloud-native deployment on Civo Kubernetes</li>
           </ul>
         </div>
 
         <div class="content" style="margin-top: 2em;">
           <h2 class="is-size-5 has-text-weight-bold">
-            <span>Technical Highlights</span>
+            <span>Technical Achievements</span>
           </h2>
           <ul>
-            <li>Implemented efficient game loop using requestAnimationFrame for smooth animations</li>
-            <li>Utilized canvas API for high-performance 2D graphics rendering</li>
-            <li>Designed modular code architecture with separation of concerns</li>
-            <li>Optimized collision detection algorithms for minimal performance overhead</li>
-            <li>Implemented state management for game flow control</li>
+            <li>Designed and implemented production-ready Kubernetes infrastructure from scratch</li>
+            <li>Solved distributed systems challenges including race conditions and state synchronization</li>
+            <li>Built CI/CD pipeline with Docker, Harbor, and ArgoCD for automated deployments</li>
+            <li>Implemented WebSocket-based real-time communication at scale</li>
+            <li>Configured multi-namespace Kubernetes architecture with proper network isolation</li>
+            <li>Integrated structured logging with JSON format for modern observability platforms</li>
+            <li>Deployed and managed Redis cluster for distributed state management</li>
+            <li>Implemented security best practices including CORS, secrets management, and non-root containers</li>
           </ul>
         </div>
 
@@ -108,10 +302,13 @@
             <span>Links</span>
           </h2>
           <p>
-            <a href="https://github.com/bhargav0605/snake-rush" target="_blank">View on GitHub ➔</a>
+            <a href="https://github.com/bhargav0605/snake-rush" target="_blank" rel="noopener noreferrer">View on GitHub ➔</a>
           </p>
           <p>
-            <a href="https://bhargav0605.github.io/snake-rush" target="_blank">Play Live Demo ➔</a>
+            <a href="https://snake-rush.bhargavparmar.dev" target="_blank" rel="noopener noreferrer">Play Live Game ➔</a>
+          </p>
+          <p>
+            <a href="https://www.civo.com/" target="_blank" rel="noopener noreferrer">Powered by Civo Cloud ➔</a>
           </p>
         </div>
 
