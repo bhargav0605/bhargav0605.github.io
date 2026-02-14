@@ -1,12 +1,12 @@
 jobs:
-  - title: "DevOps Engineer I"
-    company: "ViewTrade International IFSC Private Limited"
-    companyUrl: "https://www.viewtrade.in/"
-    companyLogo: "/assets/companies/viewtrade-logo.png"
-    period: "February 2026 - Present"
-    location: "Gandhinagar"
-    highlights:
-      - "Kubernetes expert"
+  # - title: "DevOps Engineer I"
+  #   company: "ViewTrade International IFSC Private Limited"
+  #   companyUrl: "https://www.viewtrade.in/"
+  #   companyLogo: "/assets/companies/viewtrade-logo.png"
+  #   period: "February 2026 - Present"
+  #   location: "Gandhinagar"
+  #   highlights:
+  #     - "Kubernetes expert"
   - title: "Senior DevOps Engineer"
     company: "Inferenz Tech Pvt. Ltd."
     companyUrl: "https://inferenz.ai/"
