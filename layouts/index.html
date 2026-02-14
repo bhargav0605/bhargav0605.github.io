@@ -114,6 +114,11 @@
       {{ with .Site.Data.experience }}
       {{ range $index, $job := .jobs }}
       <div class="exp-card">
+        {{ if $job.companyLogo }}
+        <div class="exp-logo">
+          <img src="{{ $job.companyLogo | relURL }}" alt="{{ $job.company }} logo">
+        </div>
+        {{ end }}
         <div class="exp-content">
           <div class="exp-num">{{ printf "%02d" (add $index 1) }}</div>
           <div class="exp-role">{{ $job.title }}</div>
@@ -132,21 +137,21 @@
   </div>
 </section>
 
-<!-- TOOLS -->
-<section class="tools-section" id="tools">
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
   <div class="section-inner">
-    <div class="section-tag-light">Tech Stack</div>
-    <h2 class="section-heading">Tools & Technologies</h2>
-    <p class="section-desc-light">The technologies I work with daily to build and manage production infrastructure.</p>
-    <div class="tools-grid">
-      {{ with .Site.Data.skills }}
-      {{ range .categories }}
-      {{ range .tools }}
-      <span class="tool-pill">
-        <img src="{{ printf "assets/badges/%s-logo.%s" .icon (cond (eq .icon "wiz") "webp" (cond (or (eq .icon "kubernetes") (eq .icon "linux") (eq .icon "trivy")) "png" "svg")) | relURL }}" alt="{{ .name }}" class="tool-icon">
-        {{ .name }}
-      </span>
-      {{ end }}
+    <div class="section-tag-light">Portfolio</div>
+    <h2 class="section-heading">Projects</h2>
+    <p class="section-desc-light">Open source projects and tools I've built.</p>
+    <div class="projects-grid">
+      {{ with .Site.Data.projects }}
+      {{ range first 4 .featured }}
+      <div class="project-card">
+        <div class="project-tag-label">{{ delimit .tags ", " }}{{ if eq .status "in_progress" }} · In Progress{{ end }}</div>
+        <div class="project-title"><a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}</a></div>
+        <div class="project-card-desc">{{ .description }}</div>
+        <a class="project-link" href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>View on GitHub →</a>
+      </div>
       {{ end }}
       {{ end }}
     </div>
@@ -194,21 +199,21 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="projects-section" id="projects">
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
   <div class="section-inner">
-    <div class="section-tag-light">Portfolio</div>
-    <h2 class="section-heading">Projects</h2>
-    <p class="section-desc-light">Open source projects and tools I've built.</p>
-    <div class="projects-grid">
-      {{ with .Site.Data.projects }}
-      {{ range first 4 .featured }}
-      <div class="project-card">
-        <div class="project-tag-label">{{ delimit .tags ", " }}{{ if eq .status "in_progress" }} · In Progress{{ end }}</div>
-        <div class="project-title"><a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}</a></div>
-        <div class="project-card-desc">{{ .description }}</div>
-        <a class="project-link" href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>View on GitHub →</a>
-      </div>
+    <div class="section-tag-light">Tech Stack</div>
+    <h2 class="section-heading">Tools & Technologies</h2>
+    <p class="section-desc-light">The technologies I work with daily to build and manage production infrastructure.</p>
+    <div class="tools-grid">
+      {{ with .Site.Data.skills }}
+      {{ range .categories }}
+      {{ range .tools }}
+      <span class="tool-pill">
+        <img src="{{ printf "assets/badges/%s-logo.%s" .icon (cond (eq .icon "wiz") "webp" (cond (or (eq .icon "kubernetes") (eq .icon "linux") (eq .icon "trivy")) "png" "svg")) | relURL }}" alt="{{ .name }}" class="tool-icon">
+        {{ .name }}
+      </span>
+      {{ end }}
       {{ end }}
       {{ end }}
     </div>

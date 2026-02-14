@@ -1,7 +1,16 @@
 jobs:
+  - title: "DevOps Engineer I"
+    company: "ViewTrade International IFSC Private Limited"
+    companyUrl: "https://www.viewtrade.in/"
+    companyLogo: "/assets/companies/viewtrade-logo.png"
+    period: "February 2026 - Present"
+    location: "Gandhinagar"
+    highlights:
+      - "Kubernetes expert"
   - title: "Senior DevOps Engineer"
     company: "Inferenz Tech Pvt. Ltd."
     companyUrl: "https://inferenz.ai/"
+    companyLogo: "/assets/companies/inferenz-logo.png"
     period: "January 2024 - October 2024"
     location: ""
     highlights:
@@ -14,6 +23,7 @@ jobs:
   - title: "Software Engineer"
     company: "ManekTech Solutions Pvt. Ltd."
     companyUrl: "https://www.manektech.com/"
+    companyLogo: "/assets/companies/manektech-logo.svg"
     period: "August 2023 - December 2023"
     location: ""
     highlights:
@@ -24,6 +34,7 @@ jobs:
   - title: "Software Engineer"
     company: "Sterlite Technologies Ltd."
     companyUrl: "https://www.stldigital.tech/"
+    companyLogo: "/assets/companies/sterlite-logo.png"
     period: "November 2021 - March 2023"
     location: ""
     highlights:
@@ -37,6 +48,7 @@ jobs:
   - title: "Software Engineer - Internship"
     company: "Sterlite Technologies Ltd."
     companyUrl: "https://www.stldigital.tech/"
+    companyLogo: "/assets/companies/sterlite-logo.png"
     period: "May 2021 - November 2021"
     location: ""
     highlights:
