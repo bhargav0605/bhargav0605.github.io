@@ -1,5 +1,28 @@
 {{ define "main" }}
 
+<!-- Schema.org Person Structured Data for Homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ .Site.Params.author }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "jobTitle": "Cloud & DevOps Engineer",
+  "knowsAbout": ["Kubernetes", "DevOps", "Cloud Computing", "Infrastructure as Code", "AWS", "Security", "Automation"],
+  "sameAs": [
+    "https://github.com/{{ .Site.Params.social.github }}",
+    "https://linkedin.com/in/{{ .Site.Params.social.linkedin }}",
+    "https://twitter.com/{{ .Site.Params.social.twitter }}"
+  ],
+  "email": "{{ .Site.Params.social.email }}",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Gujarat Technological University"
+  }
+}
+</script>
+
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner">

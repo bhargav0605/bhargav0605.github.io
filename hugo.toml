@@ -15,6 +15,12 @@ pagerSize = 10
 # Enable robots.txt generation
 enableRobotsTXT = true
 
+# Sitemap configuration
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
 # Markup settings
 [markup]
   [markup.goldmark]
