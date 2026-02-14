@@ -321,6 +321,14 @@
   .cert-name { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; }
   .cert-desc { font-size: 11px; color: var(--dim-dark); margin-top: 4px; }
 
+  /* White variant for Kubernetes and AWS certs */
+  .cert-card-light {
+    background: #fff; border: 1px solid var(--border-light);
+  }
+  .cert-card-light:hover { border-color: #111; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .cert-card-light .cert-name { color: #111; }
+  .cert-card-light .cert-desc { color: #777; }
+
   /* ===== PROJECTS (light) ===== */
   .projects-section { background: var(--bg-light); padding: 100px 40px; }
   .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
