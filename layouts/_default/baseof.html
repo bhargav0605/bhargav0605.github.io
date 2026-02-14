@@ -35,7 +35,10 @@
   <meta name="twitter:site" content="@{{ .Site.Params.social.twitter }}">
   {{ if .Params.image }}
   <meta name="twitter:image" content="{{ .Params.image | absURL }}">
-  {{ end }}>
+  {{ end }}
+
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} - Blog RSS Feed" href="{{ "blog/index.xml" | absURL }}">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family={{ .Site.Params.fonts.headings }}:wght@300;400;500;600;700;800&family={{ .Site.Params.fonts.mono }}:wght@400;500&display=swap" rel="stylesheet">

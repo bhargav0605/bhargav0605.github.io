@@ -43,16 +43,48 @@
 }
 </script>
 
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ .Site.BaseURL }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ "blog/" | absURL }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }
+  ]
+}
+</script>
+
 <!-- Blog Post Single Page -->
 <article style="background: var(--bg-light); padding-top: 120px; padding-bottom: 100px; min-height: 100vh;">
   <div class="section-inner" style="max-width: 800px;">
 
-    <!-- Back link -->
-    <div style="margin-bottom: 32px;">
-      <a href="{{ "blog/" | relURL }}" style="font-size: 14px; color: #777; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s;">
-        ← Back to Blog
-      </a>
-    </div>
+    <!-- Breadcrumbs -->
+    <nav aria-label="Breadcrumb" style="margin-bottom: 24px;">
+      <ol style="display: flex; align-items: center; gap: 8px; list-style: none; padding: 0; margin: 0; font-size: 13px; color: #777;">
+        <li><a href="{{ "/" | relURL }}" style="color: #777; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#777'">Home</a></li>
+        <li style="color: #ccc;">›</li>
+        <li><a href="{{ "blog/" | relURL }}" style="color: #777; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#777'">Blog</a></li>
+        <li style="color: #ccc;">›</li>
+        <li style="color: #111; font-weight: 500;">{{ .Title }}</li>
+      </ol>
+    </nav>
 
     <!-- Post Header -->
     <header style="margin-bottom: 48px;">
@@ -156,15 +188,45 @@
 }
 
 .blog-content pre {
+  position: relative;
   background: #1a1a1a;
   color: #fff;
   padding: 20px;
+  padding-top: 45px;
   border-radius: 8px;
   overflow-x: auto;
   margin-bottom: 24px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
   line-height: 1.6;
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #aaa;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Sora', sans-serif;
+}
+
+.copy-code-button:hover {
+  background: #333;
+  color: #fff;
+  border-color: #666;
+}
+
+.copy-code-button.copied {
+  background: #1a7f37;
+  color: #fff;
+  border-color: #1a7f37;
 }
 
 .blog-content code {
@@ -201,5 +263,51 @@
   margin: 40px 0;
 }
 </style>
+
+<!-- Code Copy Button Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Find all code blocks
+  const codeBlocks = document.querySelectorAll('.blog-content pre');
+
+  codeBlocks.forEach(function(codeBlock) {
+    // Create copy button
+    const button = document.createElement('button');
+    button.className = 'copy-code-button';
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy code to clipboard');
+
+    // Add click handler
+    button.addEventListener('click', function() {
+      // Get the code content (skip the button itself)
+      const code = codeBlock.querySelector('code');
+      const text = code ? code.textContent : codeBlock.textContent;
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(text).then(function() {
+        // Success feedback
+        button.textContent = '✓ Copied!';
+        button.classList.add('copied');
+
+        // Reset after 2 seconds
+        setTimeout(function() {
+          button.textContent = 'Copy';
+          button.classList.remove('copied');
+        }, 2000);
+      }).catch(function(err) {
+        // Fallback for older browsers
+        button.textContent = 'Failed';
+        setTimeout(function() {
+          button.textContent = 'Copy';
+        }, 2000);
+      });
+    });
+
+    // Insert button into code block
+    codeBlock.style.position = 'relative';
+    codeBlock.insertBefore(button, codeBlock.firstChild);
+  });
+});
+</script>
 
 {{ end }}
