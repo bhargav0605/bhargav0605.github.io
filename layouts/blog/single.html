@@ -1,0 +1,159 @@
+{{ define "title" }}{{ .Title }} — {{ .Site.Title }}{{ end }}
+
+{{ define "og-title" }}{{ .Title }}{{ end }}
+
+{{ define "main" }}
+
+<!-- Blog Post Single Page -->
+<article style="background: var(--bg-light); padding-top: 120px; padding-bottom: 100px; min-height: 100vh;">
+  <div class="section-inner" style="max-width: 800px;">
+
+    <!-- Back link -->
+    <div style="margin-bottom: 32px;">
+      <a href="{{ "blog/" | relURL }}" style="font-size: 14px; color: #777; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s;">
+        ← Back to Blog
+      </a>
+    </div>
+
+    <!-- Post Header -->
+    <header style="margin-bottom: 48px;">
+      <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--dim-light); font-weight: 600; margin-bottom: 16px;">
+        {{ .Date.Format "January 2, 2006" }}
+        {{ if .Params.readingTime }} · {{ .Params.readingTime }} min read{{ end }}
+      </div>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 20px;">
+        {{ .Title }}
+      </h1>
+      {{ if .Params.summary }}
+      <p style="font-size: 17px; color: #555; line-height: 1.8; max-width: 650px;">
+        {{ .Params.summary }}
+      </p>
+      {{ end }}
+      {{ if .Params.tags }}
+      <div style="margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;">
+        {{ range .Params.tags }}
+        <span style="font-size: 12px; padding: 4px 12px; background: #f0f0f0; border-radius: 100px; color: #555; font-weight: 500;">
+          {{ . }}
+        </span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </header>
+
+    <!-- Post Content -->
+    <div class="blog-content" style="font-size: 16px; line-height: 1.9; color: #333;">
+      {{ .Content }}
+    </div>
+
+    <!-- Post Footer -->
+    <footer style="margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border-light);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <p style="font-size: 13px; color: #777; margin-bottom: 8px;">Share this post</p>
+          <div style="display: flex; gap: 12px;">
+            <a href="https://twitter.com/intent/tweet?text={{ .Title }}&url={{ .Permalink }}" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Share on Twitter">
+              <i class="devicon-twitter-original"></i>
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Share on LinkedIn">
+              <i class="devicon-linkedin-plain"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <a href="{{ "blog/" | relURL }}" class="btn-dark" style="font-size: 13px; padding: 10px 24px;">← All Posts</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</article>
+
+<!-- Additional CSS for blog content -->
+<style>
+.blog-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.blog-content h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 36px;
+  margin-bottom: 14px;
+}
+
+.blog-content p {
+  margin-bottom: 20px;
+}
+
+.blog-content ul, .blog-content ol {
+  margin-left: 24px;
+  margin-bottom: 20px;
+}
+
+.blog-content li {
+  margin-bottom: 8px;
+}
+
+.blog-content a {
+  color: #111;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-light);
+  transition: border-color 0.2s;
+}
+
+.blog-content a:hover {
+  border-color: #111;
+}
+
+.blog-content pre {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.blog-content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.blog-content blockquote {
+  border-left: 3px solid #111;
+  padding-left: 20px;
+  margin: 28px 0;
+  font-style: italic;
+  color: #555;
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 28px 0;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 40px 0;
+}
+</style>
+
+{{ end }}

@@ -1,0 +1,26 @@
+name: "Bhargav Parmar"
+title: "Cloud & DevOps Engineer"
+subtitle: "Kubestronaut"
+tagline: "Software Engineer with focus on Security, Cloud architecture, DevOps, and production-grade systems"
+currentStatus: "Interested in innovative projects?"
+
+bio:
+  - "I am a Software Engineer with focus on Security, Cloud architecture, DevOps, and production-grade systems."
+  - "I love diving deep into technical concepts like Kubernetes and sharing my learnings through my blog posts. My areas of interest include Linux, Kubernetes, Cloud and developing tools in GoLang."
+  - "As of now, I bring 4 years of experience in Cloud and DevOps, with a strong focus on building scalable, reliable systems. Outside of work, I'm passionate about learning new technologies and contributing to open-source projects. I believe in continuous learning and staying curious to grow as both an engineer and a problem-solver."
+  - "I share my learning through my socials and blog posts."
+
+yearsOfExperience: 4
+specializations:
+  - "Kubernetes & Cloud Architecture"
+  - "DevOps & Automation"
+  - "Security & Compliance"
+  - "Infrastructure as Code"
+
+interests:
+  - "Linux"
+  - "Kubernetes"
+  - "Cloud Technologies"
+  - "GoLang Development"
+  - "Open Source"
+  - "Technical Writing"

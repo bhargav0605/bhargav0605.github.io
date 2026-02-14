@@ -1,0 +1,33 @@
+{{ define "title" }}Blog — {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+
+<!-- Blog List Page -->
+<section class="blog-section" style="padding-top: 160px;">
+  <div class="section-inner">
+    <div class="section-tag">Blog</div>
+    <h1 class="section-heading">All Posts</h1>
+    <p class="section-desc" style="margin-bottom: 48px;">Thoughts on Kubernetes, DevOps, and cloud-native technologies.</p>
+
+    <div class="blog-grid">
+      {{ range .Pages }}
+      <div class="blog-card">
+        <div class="blog-card-date">{{ .Date.Format "January 2, 2006" }}</div>
+        <div class="blog-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+        {{ if .Params.summary }}
+        <p style="font-size:13px;color:#999;margin-top:8px;line-height:1.7;">{{ .Params.summary }}</p>
+        {{ end }}
+        <a class="blog-card-link" href="{{ .Permalink }}">Read Post →</a>
+      </div>
+      {{ else }}
+      <div class="blog-card" style="grid-column: span 3;">
+        <div class="blog-card-title">No blog posts yet</div>
+        <p style="font-size:14px;color:#999;margin-top:10px;">Check back soon for new content, or visit my Hashnode blog.</p>
+        <a class="blog-card-link" href="https://bhargavparmar.hashnode.dev/" target="_blank" rel="noopener noreferrer">Visit Hashnode Blog →</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

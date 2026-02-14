@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="author" content="{{ .Site.Params.author }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ "favicon.png" | relURL }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ block "og-title" . }}{{ .Site.Title }}{{ end }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ .Site.Title }}">
+  <meta name="twitter:description" content="{{ .Site.Params.description }}">
+  <meta name="twitter:site" content="@{{ .Site.Params.social.twitter }}">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family={{ .Site.Params.fonts.headings }}:wght@300;400;500;600;700;800&family={{ .Site.Params.fonts.mono }}:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Devicon for technology icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+  <!-- Google Analytics -->
+  {{ template "_internal/google_analytics.html" . }}
+</head>
+<body>
+  {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
+
+  <!-- Main JavaScript -->
+  <script src="{{ "js/main.js" | relURL }}"></script>
+</body>
+</html>

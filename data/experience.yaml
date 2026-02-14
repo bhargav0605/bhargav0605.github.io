@@ -1,0 +1,47 @@
+jobs:
+  - title: "Senior DevOps Engineer"
+    company: "Inferenz Tech Pvt. Ltd."
+    companyUrl: "https://inferenz.ai/"
+    period: "January 2024 - October 2024"
+    location: ""
+    highlights:
+      - "Healthcare: Designed secure, modular AWS infrastructure with Terraform and CloudFormation (including OpenSearch with Okta SSO and EKS clusters), and automated ETL workflows using EventBridge, Lambda, Airflow, and Snowflake — cutting data processing time by 30% and improving scalability."
+      - "Developed Python-based Lambda functions and DAGs to streamline data pipelines, and strengthened software supply chain security with Wiz, JFrog, Harbor, Trivy, and SBOM generation, reducing vulnerability exposure and enhancing compliance."
+      - "Data Pipeline for Snowflake with AWS: Engineered Python-based AWS Lambda functions to automate data pipelines and streamline end-to-end workflows. Built event-driven pipelines leveraging Lambda, S3, and Snowflake for seamless and cost-effective data processing."
+      - "Azure & Kubernetes: Consulted on planning and designing Azure Kubernetes Service (AKS) clusters, focusing on cost optimization and efficient resource utilization. Implemented VNET integration, subnet allocation, and IP address management to ensure secure, scalable networking."
+      - "Designed and enforced Kubernetes Network Policies for traffic control, and optimized load balancer and ingress configurations for high availability and secure service exposure."
+
+  - title: "Software Engineer"
+    company: "ManekTech Solutions Pvt. Ltd."
+    companyUrl: "https://www.manektech.com/"
+    period: "August 2023 - December 2023"
+    location: ""
+    highlights:
+      - "AI-Powerpoint Creation: Deployed a backend for apps powered by GPT-based LLM services, leveraging OpenAI endpoints, Memcached caching, and horizontally scaled MongoDB clusters on AWS EC2 instances to boost system throughput by 40% and cut latency by 30%."
+      - "Automated Dev and Prod deployments for frontend and backend with GitHub Actions, and implemented Blue/Green deployments using Route53 DNS routing to minimize downtime and enable quick updates."
+      - "AWS Infrastructure: Cost effective AWS Infrastructure planning and setup. EKS setup and IP planning for the deployment."
+
+  - title: "Software Engineer"
+    company: "Sterlite Technologies Ltd."
+    companyUrl: "https://www.stldigital.tech/"
+    period: "November 2021 - March 2023"
+    location: ""
+    highlights:
+      - "Telco Product: Modernized infrastructure by migrating microservices and CI/CD pipelines to AWS with Terraform and Argo CD, enabling automated GitOps deployments. Developed Ansible playbooks for server provisioning and environment consistency, reducing manual errors and speeding releases."
+      - "Implemented TLS termination and advanced load balancing across diverse servers. Boosted system reliability and cut costs through end-to-end automation and infrastructure as code."
+      - "5G Marketplace: Designed highly available on-prem Kubernetes clusters with Istio (mTLS), HAProxy TLS termination, centralized ELK logging, Grafana/Prometheus monitoring, and a custom Go-based admission controller for policy enforcement — achieving almost zero downtime."
+      - "Enhanced cloud-native readiness by testing using CNCF test suite and fixing Java bugs."
+      - "WSO2 Message Transformation Micro-services: Developed and deployed WSO2 message transformation microservices with Jenkins pipelines, accelerating releases across SIT, UAT, and PROD. Automated server configuration using Ansible for consistent and reproducible environments."
+      - "Strengthened security posture with Wiz scans and SBOM generation. Migrated services to AWS Cloud and optimized Kubernetes auto-scaling through traffic-based custom scaling rules."
+
+  - title: "Software Engineer - Internship"
+    company: "Sterlite Technologies Ltd."
+    companyUrl: "https://www.stldigital.tech/"
+    period: "May 2021 - November 2021"
+    location: ""
+    highlights:
+      - "Automated deployment workflows with custom scripts, reducing manual effort and ensuring consistent, error-free releases."
+      - "Collaborated with senior engineers to troubleshoot and resolve production issues, contributing to improved system stability and faster recovery."
+      - "Designed and optimized CI/CD pipelines in Jenkins, streamlining software delivery and accelerating build and deployment cycles."
+      - "Documented processes and shared best practices, improving team collaboration and onboarding efficiency."
+      - "Maintained on-premises Kubernetes clusters and Linux systems with regular security updates, while managing and optimizing CI/CD pipelines across UAT, SIT, QA, and DEV environments to enable faster and more reliable deployments."

@@ -1,0 +1,50 @@
+certifications:
+  - name: "Kubestronaut"
+    issuer: "Cloud Native Computing Foundation"
+    badgeId: "1aea88be-d8c1-4f9d-ba9c-6605782b5ddb"
+    credlyUrl: "https://www.credly.com/badges/1aea88be-d8c1-4f9d-ba9c-6605782b5ddb/public_url"
+    date: ""
+    featured: true
+    description: "Achieved all five Kubernetes certifications"
+
+  - name: "CKS - Certified Kubernetes Security Specialist"
+    issuer: "Cloud Native Computing Foundation"
+    badgeId: "334b6fd0-3063-4f07-8535-31496e1fc7b8"
+    credlyUrl: "https://www.credly.com/badges/334b6fd0-3063-4f07-8535-31496e1fc7b8/public_url"
+    date: ""
+    featured: true
+    description: "Expert in Kubernetes security"
+
+  - name: "CKA - Certified Kubernetes Administrator"
+    issuer: "Cloud Native Computing Foundation"
+    badgeId: "00ba65cf-ac6a-4b38-b760-2aff3458f45b"
+    credlyUrl: "https://www.credly.com/badges/00ba65cf-ac6a-4b38-b760-2aff3458f45b/public_url"
+    date: ""
+    featured: true
+    description: "Expert in Kubernetes administration"
+
+  - name: "CKAD - Certified Kubernetes Application Developer"
+    issuer: "Cloud Native Computing Foundation"
+    badgeId: "6d4926c7-9631-4b57-8298-bee59e500852"
+    credlyUrl: "https://www.credly.com/badges/6d4926c7-9631-4b57-8298-bee59e500852/public_url"
+    date: ""
+    featured: true
+    description: "Expert in Kubernetes application development"
+
+  - name: "KCNA - Kubernetes and Cloud Native Associate"
+    issuer: "Cloud Native Computing Foundation"
+    badgeId: "834ec02c-e7b1-4ddd-8db2-c2bb9aa0509b"
+    credlyUrl: "https://www.credly.com/badges/834ec02c-e7b1-4ddd-8db2-c2bb9aa0509b/public_url"
+    date: ""
+    featured: true
+    description: "Cloud Native and Kubernetes fundamentals"
+
+  - name: "KCSA - Kubernetes and Cloud Native Security Associate"
+    issuer: "Cloud Native Computing Foundation"
+    badgeId: "cbaa1520-aa8a-4d04-a141-b475d095bd8f"
+    credlyUrl: "https://www.credly.com/badges/cbaa1520-aa8a-4d04-a141-b475d095bd8f/public_url"
+    date: ""
+    featured: true
+    description: "Cloud Native security fundamentals"
+
+credlyProfile: "https://www.credly.com/users/bhargav-parmar.dev"

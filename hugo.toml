@@ -1,0 +1,65 @@
+baseURL = 'https://bhargavparmar.dev/'
+languageCode = 'en-us'
+title = 'Bhargav Parmar — Cloud & DevOps Engineer'
+
+# Disable taxonomies we don't need
+disableKinds = ['taxonomy', 'term']
+
+# Enable Google Analytics
+googleAnalytics = 'G-34P6V7HKG0'
+
+# Pagination
+[pagination]
+pagerSize = 10
+
+# Enable robots.txt generation
+enableRobotsTXT = true
+
+# Markup settings
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Allow HTML in markdown
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+    style = 'monokai'
+
+# Output formats
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+
+# Params for custom settings
+[params]
+  description = 'Cloud & DevOps Engineer specializing in automation, infrastructure as code, and scalable cloud solutions.'
+  author = 'Bhargav Parmar'
+
+  # Fonts
+  [params.fonts]
+    headings = 'Sora'
+    body = 'Sora'
+    mono = 'JetBrains Mono'
+
+  # Social links
+  [params.social]
+    github = 'bhargav0605'
+    twitter = 'b_parmar_dev'
+    linkedin = 'bhargav-parmar-dev'
+    email = 'contact@bhargavparmar.dev'
+
+# Menu configuration (if needed later)
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 1
+  [[menu.main]]
+    name = 'Blog'
+    url = '/blog/'
+    weight = 2
+  [[menu.main]]
+    name = 'Contact'
+    url = '/#contact'
+    weight = 3

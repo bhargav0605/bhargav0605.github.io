@@ -1,0 +1,29 @@
+github:
+  username: "bhargav0605"
+  url: "https://github.com/bhargav0605"
+  display: "GitHub"
+
+linkedin:
+  username: "bhargav-parmar-dev"
+  url: "https://www.linkedin.com/in/bhargav-parmar-dev/"
+  display: "LinkedIn"
+  followers: "2.4k"
+
+twitter:
+  username: "b_parmar_dev"
+  url: "https://x.com/b_parmar_dev"
+  display: "X (Twitter)"
+
+bluesky:
+  username: "bhargavparmar-dev.bsky.social"
+  url: "https://bsky.app/profile/bhargavparmar-dev.bsky.social"
+  display: "Bluesky"
+
+email:
+  address: "bhargavparmar7080@gmail.com"
+  display: "Email"
+
+credly:
+  username: "bhargav-parmar.dev"
+  url: "https://www.credly.com/users/bhargav-parmar.dev"
+  display: "Credly Profile"

@@ -1,0 +1,38 @@
+featured:
+  - name: "Terraform modules for AWS"
+    description: "Infrastructure as Code modules for AWS services"
+    url: "https://github.com/bhargav0605/TravelsApplication-terraform"
+    tags: ["Terraform", "AWS", "IaC"]
+    status: "completed"
+
+  - name: "DevOps - Microservices CI/CD Pipeline"
+    description: "Complete CI/CD pipeline implementation for microservices architecture"
+    url: "https://github.com/bhargav0605/CineVisionMicroserviceProject-Devops"
+    tags: ["DevOps", "CI/CD", "Microservices"]
+    status: "completed"
+
+  - name: "Data Structure and Algorithm Visualization"
+    description: "Interactive visualization tool using WebSocket, Python, GoLang, ReactJS and Konva"
+    url: "https://github.com/bhargav0605/ds-algo-viz"
+    tags: ["GoLang", "Python", "ReactJS", "WebSocket"]
+    status: "in_progress"
+
+  - name: "Identity Reconciliation"
+    description: "Backend service built with Java, Spring Boot, and MySQL"
+    url: "https://github.com/bhargav0605/IdentityReconciliation"
+    tags: ["Java", "Spring Boot", "MySQL"]
+    status: "completed"
+
+  - name: "GeoGram API"
+    description: "Location-based API service built with JavaScript"
+    url: "https://github.com/bhargav0605/GeoGram-api"
+    tags: ["JavaScript", "API"]
+    status: "completed"
+
+  - name: "Snake Rush"
+    description: "Classic Snake game with modern features"
+    url: "/snake-rush/"
+    tags: ["Game", "JavaScript"]
+    status: "completed"
+
+allProjectsUrl: "https://github.com/bhargav0605?tab=repositories"

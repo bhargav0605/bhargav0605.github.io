@@ -1,0 +1,305 @@
+{{ define "main" }}
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <a href="https://www.credly.com/badges/1aea88be-d8c1-4f9d-ba9c-6605782b5ddb/public_url" target="_blank" rel="noopener noreferrer" class="hero-badge" style="text-decoration: none; color: inherit;">
+        <img src="{{ "assets/badges/kubestronaut-badge.png" | relURL }}" alt="Kubestronaut">
+        Kubestronaut
+      </a>
+
+      {{ with .Site.Data.bio }}
+      <h1 class="hero-title">Hello, I'm {{ .name }}</h1>
+      <p class="hero-sub">{{ .title }} building scalable, secure infrastructure. Kubernetes specialist passionate about sharing knowledge.</p>
+      {{ end }}
+
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Say Hello!</a>
+        {{ with .Site.Data.social }}
+        <a class="btn-outline" href="{{ .github.url }}" target="_blank" rel="noopener noreferrer">
+          <i class="devicon-github-original"></i> GitHub
+        </a>
+        <a class="btn-outline" href="{{ .linkedin.url }}" target="_blank" rel="noopener noreferrer">
+          <i class="devicon-linkedin-plain"></i> LinkedIn
+        </a>
+        {{ end }}
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="{{ "assets/images/profile.jpg" | relURL }}" alt="Bhargav Parmar">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="about-tag">About Me</div>
+      {{ with .Site.Data.bio }}
+      <h2 class="about-heading">I am a Professional {{ .title }}</h2>
+      {{ range .bio }}
+      <p class="about-text">{{ . }}</p>
+      {{ end }}
+      {{ end }}
+      <div class="about-btns">
+        <a class="btn-dark" href="#projects">My Projects</a>
+        {{ with .Site.Data.social }}
+        <a class="btn-light" href="https://bhargavparmar.hashnode.dev/" target="_blank" rel="noopener noreferrer">Read Blog ↗</a>
+        {{ end }}
+      </div>
+    </div>
+    <div class="about-right">
+      <a href="https://www.credly.com/badges/1aea88be-d8c1-4f9d-ba9c-6605782b5ddb/public_url" target="_blank" rel="noopener noreferrer" class="kubestronaut-badge">
+        <img src="{{ "assets/badges/kubestronaut-badge.png" | relURL }}" alt="Kubestronaut Badge">
+      </a>
+      <div class="kubestronaut-text">Kubestronaut</div>
+      <div class="mini-certs">
+        <a href="https://www.credly.com/badges/00ba65cf-ac6a-4b38-b760-2aff3458f45b/public_url" target="_blank" rel="noopener noreferrer" class="mini-cert">
+          <img src="{{ "assets/badges/cka-badge.png" | relURL }}" alt="CKA">
+        </a>
+        <a href="https://www.credly.com/badges/6d4926c7-9631-4b57-8298-bee59e500852/public_url" target="_blank" rel="noopener noreferrer" class="mini-cert">
+          <img src="{{ "assets/badges/ckad-badge.png" | relURL }}" alt="CKAD">
+        </a>
+        <a href="https://www.credly.com/badges/334b6fd0-3063-4f07-8535-31496e1fc7b8/public_url" target="_blank" rel="noopener noreferrer" class="mini-cert">
+          <img src="{{ "assets/badges/cks-badge.png" | relURL }}" alt="CKS">
+        </a>
+        <a href="https://www.credly.com/badges/834ec02c-e7b1-4ddd-8db2-c2bb9aa0509b/public_url" target="_blank" rel="noopener noreferrer" class="mini-cert">
+          <img src="{{ "assets/badges/kcna-badge.png" | relURL }}" alt="KCNA">
+        </a>
+        <a href="https://www.credly.com/badges/cbaa1520-aa8a-4d04-a141-b475d095bd8f/public_url" target="_blank" rel="noopener noreferrer" class="mini-cert">
+          <img src="{{ "assets/badges/kcsa-badge.png" | relURL }}" alt="KCSA">
+        </a>
+        <a href="https://www.credly.com/badges/f20e7301-aa8e-4a90-a037-f03bcdc9cf27/public_url" target="_blank" rel="noopener noreferrer" class="mini-cert">
+          <img src="{{ "assets/badges/aws-cloud-practitioner-badge.png" | relURL }}" alt="AWS Cloud Practitioner">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-inner">
+    <div class="section-tag">Work History</div>
+    <h2 class="section-heading">Experience</h2>
+    <p class="section-desc">Building scalable systems across diverse industries — from healthcare data pipelines to 5G telecom infrastructure.</p>
+    <div class="exp-grid">
+      {{ with .Site.Data.experience }}
+      {{ range $index, $job := .jobs }}
+      <div class="exp-card">
+        <div class="exp-content">
+          <div class="exp-num">{{ printf "%02d" (add $index 1) }}</div>
+          <div class="exp-role">{{ $job.title }}</div>
+          <div class="exp-company"><a href="{{ $job.companyUrl }}" target="_blank" rel="noopener noreferrer">{{ $job.company }}</a></div>
+          <div class="exp-date">{{ $job.period }}</div>
+          <div class="exp-desc">
+            {{ range $job.highlights }}
+            <p style="margin-bottom: 12px;">{{ . }}</p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="section-inner">
+    <div class="section-tag-light">Tech Stack</div>
+    <h2 class="section-heading">Tools & Technologies</h2>
+    <p class="section-desc-light">The technologies I work with daily to build and manage production infrastructure.</p>
+    <div class="tools-grid">
+      {{ with .Site.Data.skills }}
+      {{ range .categories }}
+      {{ range .tools }}
+      <span class="tool-pill">
+        <img src="{{ printf "assets/badges/%s-logo.%s" .icon (cond (eq .icon "wiz") "webp" (cond (or (eq .icon "kubernetes") (eq .icon "linux") (eq .icon "trivy")) "png" "svg")) | relURL }}" alt="{{ .name }}" class="tool-icon">
+        {{ .name }}
+      </span>
+      {{ end }}
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section" id="certs">
+  <div class="section-inner">
+    <div class="section-tag">Certifications</div>
+    <h2 class="section-heading">Professional Certifications</h2>
+    <p class="section-desc">Kubestronaut — All 5 CNCF Kubernetes certifications + AWS Cloud Practitioner.</p>
+    <div class="certs-grid">
+      <a class="cert-card" href="https://www.credly.com/badges/00ba65cf-ac6a-4b38-b760-2aff3458f45b/public_url" target="_blank" rel="noopener noreferrer">
+        <img src="{{ "assets/badges/cka-badge.png" | relURL }}" alt="CKA">
+        <div class="cert-name">CKA</div>
+        <div class="cert-desc">K8s Administrator</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/6d4926c7-9631-4b57-8298-bee59e500852/public_url" target="_blank" rel="noopener noreferrer">
+        <img src="{{ "assets/badges/ckad-badge.png" | relURL }}" alt="CKAD">
+        <div class="cert-name">CKAD</div>
+        <div class="cert-desc">App Developer</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/334b6fd0-3063-4f07-8535-31496e1fc7b8/public_url" target="_blank" rel="noopener noreferrer">
+        <img src="{{ "assets/badges/cks-badge.png" | relURL }}" alt="CKS">
+        <div class="cert-name">CKS</div>
+        <div class="cert-desc">Security Specialist</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/834ec02c-e7b1-4ddd-8db2-c2bb9aa0509b/public_url" target="_blank" rel="noopener noreferrer">
+        <img src="{{ "assets/badges/kcna-badge.png" | relURL }}" alt="KCNA">
+        <div class="cert-name">KCNA</div>
+        <div class="cert-desc">Cloud Native</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/cbaa1520-aa8a-4d04-a141-b475d095bd8f/public_url" target="_blank" rel="noopener noreferrer">
+        <img src="{{ "assets/badges/kcsa-badge.png" | relURL }}" alt="KCSA">
+        <div class="cert-name">KCSA</div>
+        <div class="cert-desc">Cloud Security</div>
+      </a>
+      <a class="cert-card" href="https://www.credly.com/badges/f20e7301-aa8e-4a90-a037-f03bcdc9cf27/public_url" target="_blank" rel="noopener noreferrer">
+        <img src="{{ "assets/badges/aws-cloud-practitioner-badge.png" | relURL }}" alt="AWS Cloud Practitioner">
+        <div class="cert-name">AWS CP</div>
+        <div class="cert-desc">Cloud Practitioner</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="section-inner">
+    <div class="section-tag-light">Portfolio</div>
+    <h2 class="section-heading">Projects</h2>
+    <p class="section-desc-light">Open source projects and tools I've built.</p>
+    <div class="projects-grid">
+      {{ with .Site.Data.projects }}
+      {{ range first 4 .featured }}
+      <div class="project-card">
+        <div class="project-tag-label">{{ delimit .tags ", " }}{{ if eq .status "in_progress" }} · In Progress{{ end }}</div>
+        <div class="project-title"><a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}</a></div>
+        <div class="project-card-desc">{{ .description }}</div>
+        <a class="project-link" href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>View on GitHub →</a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="blog">
+  <div class="section-inner">
+    <div class="section-tag">Blog</div>
+    <h2 class="section-heading">Latest Posts</h2>
+    <p class="section-desc">I share my learnings on Kubernetes, DevOps, and cloud-native technologies.</p>
+    <div class="blog-grid">
+      {{ range first 3 (where .Site.RegularPages "Type" "blog") }}
+      <div class="blog-card">
+        <div class="blog-card-date">{{ .Date.Format "January 2, 2006" }}</div>
+        <div class="blog-card-title"><a href="{{ .Permalink }}">{{ .Title }}</a></div>
+        <a class="blog-card-link" href="{{ .Permalink }}">Read Post →</a>
+      </div>
+      {{ else }}
+      <!-- Placeholder blog cards -->
+      <div class="blog-card">
+        <div class="blog-card-date">January 2, 2024</div>
+        <div class="blog-card-title"><a href="https://bhargavparmar.hashnode.dev/" target="_blank">Sailing Smooth: Jenkins Sets Sail with Docker!</a></div>
+        <a class="blog-card-link" href="https://bhargavparmar.hashnode.dev/" target="_blank">Read Post →</a>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-date">December 20, 2023</div>
+        <div class="blog-card-title"><a href="https://bhargavparmar.hashnode.dev/" target="_blank">From Base64 to Fort Knox: Fortifying Kubernetes Secrets</a></div>
+        <a class="blog-card-link" href="https://bhargavparmar.hashnode.dev/" target="_blank">Read Post →</a>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-date">December 5, 2023</div>
+        <div class="blog-card-title"><a href="https://bhargavparmar.hashnode.dev/" target="_blank">Behind the Padlock: HTTPS and Certificate Signatures</a></div>
+        <a class="blog-card-link" href="https://bhargavparmar.hashnode.dev/" target="_blank">Read Post →</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2 class="cta-heading">Have a project? Let's work together.</h2>
+  {{ with .Site.Data.bio }}
+  <p class="cta-sub">{{ .currentStatus }} Let's build something great.</p>
+  {{ end }}
+  <a class="btn-primary" href="#contact">Get in Touch</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-tag-light">Get in Touch</div>
+        <h2 class="section-heading">Let's Discuss</h2>
+        <p class="section-desc-light" style="margin-bottom:32px;">Open to collaborating on interesting projects and technical challenges.</p>
+        <div class="contact-item">
+          <div class="contact-item-label">Location</div>
+          <div class="contact-item-value">Ahmedabad, India</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Email</div>
+          {{ with .Site.Data.social }}
+          <div class="contact-item-value"><a href="mailto:{{ .email.address }}">{{ .email.address }}</a></div>
+          {{ end }}
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Blog</div>
+          <div class="contact-item-value"><a href="https://bhargavparmar.dev/blog" target="_blank" rel="noopener noreferrer">bhargavparmar.dev/blog</a></div>
+        </div>
+        <div class="contact-socials">
+          {{ with .Site.Data.social }}
+          <a class="social-btn" href="{{ .github.url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="devicon-github-original colored"></i></a>
+          <a class="social-btn" href="{{ .linkedin.url }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="devicon-linkedin-plain colored"></i></a>
+          <a class="social-btn" href="{{ .twitter.url }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="devicon-twitter-original colored"></i></a>
+          <a class="social-btn" href="{{ .bluesky.url }}" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"><img src="{{ "assets/badges/bluesky-logo.svg" | relURL }}" alt="Bluesky" class="social-icon"></a>
+          {{ end }}
+        </div>
+      </div>
+      <div class="contact-form-wrapper">
+        <div class="section-tag-light">Send a Message</div>
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;">Contact Form</h3>
+
+        <form id="contact-form" class="contact-form">
+          <!-- Honeypot field (hidden from users, catches bots) -->
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="form-group">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submit-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loading" style="display:none;">Sending...</span>
+          </button>
+
+          <div id="form-message" class="form-message" style="display:none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
