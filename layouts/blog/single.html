@@ -32,6 +32,9 @@
     "@type": "WebPage",
     "@id": "{{ .Permalink }}"
   },
+  {{ if .Params.image }}
+  "image": "{{ .Params.image | absURL }}",
+  {{ end }}
   {{ if .Params.tags }}
   "keywords": "{{ delimit .Params.tags ", " }}",
   {{ end }}
@@ -72,6 +75,13 @@
           {{ . }}
         </span>
         {{ end }}
+      </div>
+      {{ end }}
+
+      <!-- Featured Image (Hashnode-style) -->
+      {{ if .Params.image }}
+      <div style="margin-top: 32px; margin-bottom: 32px;">
+        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; max-height: 450px;">
       </div>
       {{ end }}
     </header>

@@ -5,6 +5,8 @@ draft = false
 summary = 'Essential security practices every DevOps engineer should implement when running Kubernetes clusters in production, from network policies to RBAC configuration.'
 tags = ['Kubernetes', 'Security', 'CKS', 'DevOps', 'Best Practices']
 readingTime = 8
+image = '/assets/blog/kubernetes-security.jpg'
+imageCredit = 'Photo by Joseph Barrientos on Unsplash'
 +++
 
 Securing Kubernetes clusters is critical for production environments. As someone who holds the CKS (Certified Kubernetes Security Specialist) certification and has deployed production-grade K8s clusters, I want to share some essential security practices.
