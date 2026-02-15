@@ -1,4 +1,9 @@
 featured:
+  - name: "𝗗𝗼𝗽𝗽𝗲𝗹 — 𝗮 𝗳𝗮𝘀𝘁, 𝘀𝗲𝗰𝘂𝗿𝗶𝘁𝘆-𝗳𝗼𝗰𝘂𝘀𝗲𝗱 𝗱𝘂𝗽𝗹𝗶𝗰𝗮𝘁𝗲 𝗳𝗶𝗹𝗲 𝗳𝗶𝗻𝗱𝗲𝗿 𝗶𝗻 𝗚𝗼"
+    description: "It detects not only exact duplicates, but also visually similar images using perceptual hashing, which feels a bit like teaching a computer to recognize faces in a crowd."
+    url: "https://github.com/bhargav0605/dopple"
+    tags: ["GoLang", "𝗰𝗼𝗻𝗰𝘂𝗿𝗿𝗲𝗻𝗰𝘆", "𝗦𝗛𝗔-𝟮𝟱𝟲 𝗵𝗮𝘀𝗵𝗶𝗻𝗴"]
+    status: "completed"
   - name: "Terraform modules for AWS"
     description: "Infrastructure as Code modules for AWS services"
     url: "https://github.com/bhargav0605/TravelsApplication-terraform"
