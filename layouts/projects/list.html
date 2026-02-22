@@ -1,0 +1,31 @@
+{{ define "title" }}Projects — {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+
+<!-- Projects List Page -->
+<section class="projects-section" style="padding-top: 160px;">
+  <div class="section-inner">
+    <div class="section-tag-light">Portfolio</div>
+    <h1 class="section-heading">All Projects</h1>
+    <p class="section-desc-light" style="margin-bottom: 48px;">Open source projects and tools I've built.</p>
+
+    <div class="projects-grid">
+      {{ with .Site.Data.projects }}
+      {{ range .featured }}
+      <div class="project-card">
+        <div class="project-tag-label">{{ delimit .tags ", " }}{{ if eq .status "in_progress" }} · In Progress{{ end }}</div>
+        <div class="project-title"><a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ .name }}</a></div>
+        <div class="project-card-desc">{{ .description }}</div>
+        <a class="project-link" href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>View on GitHub →</a>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <div style="text-align:center; margin-top: 48px;">
+      <a href="{{ .Site.Data.projects.allProjectsUrl }}" target="_blank" rel="noopener noreferrer" class="project-link" style="font-size:14px;">View all repositories on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}
