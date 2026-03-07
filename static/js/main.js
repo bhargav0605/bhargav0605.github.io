@@ -1,5 +1,7 @@
 // Bhargav Parmar Portfolio - Main JavaScript
 
+const RECAPTCHA_SITE_KEY = '6Ld_jIIsAAAAABolN0I9OCZVSNlU-B675R5G-RKr'; // replace with your site key
+
 document.addEventListener('DOMContentLoaded', function() {
 
   // Smooth scrolling for nav links
@@ -95,29 +97,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Get form data
-      const formData = {
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        message: document.getElementById('message').value.trim(),
-        website: contactForm.querySelector('input[name="website"]').value // Honeypot
-      };
-
-      // Honeypot check
-      if (formData.website) {
-        showMessage('Invalid submission detected.', 'error');
-        return;
-      }
-
       // Basic validation
-      if (!formData.name || !formData.email || !formData.message) {
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const website = contactForm.querySelector('input[name="website"]').value; // honeypot
+
+      if (!name || !email || !message) {
         showMessage('Please fill in all required fields.', 'error');
         return;
       }
 
       // Email validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
+      if (!emailRegex.test(email)) {
         showMessage('Please enter a valid email address.', 'error');
         return;
       }
@@ -129,28 +122,25 @@ document.addEventListener('DOMContentLoaded', function() {
       formMessage.style.display = 'none';
 
       try {
-        // TODO: Replace with actual API Gateway URL after deployment
-        const API_ENDPOINT = 'YOUR_API_GATEWAY_URL_HERE';
+        const API_ENDPOINT = 'https://4f72kbrhhg.execute-api.ap-south-1.amazonaws.com/contact'; // replace after: terragrunt apply
 
-        // For now, simulate success (will be replaced with actual API call)
-        // const response = await fetch(API_ENDPOINT, {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(formData)
-        // });
+        // Get reCAPTCHA v3 token (invisible to user)
+        const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
 
-        // Simulate API call for now
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message, website, recaptchaToken })
+        });
 
-        // Simulate success
-        // const data = await response.json();
-        // if (response.ok) {
+        const data = await response.json();
+        if (response.ok) {
           showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
           contactForm.reset();
           lastSubmitTime = Date.now();
-        // } else {
-        //   throw new Error(data.error || 'Failed to send message');
-        // }
+        } else {
+          throw new Error(data.error || 'Failed to send message');
+        }
 
       } catch (error) {
         console.error('Form submission error:', error);
